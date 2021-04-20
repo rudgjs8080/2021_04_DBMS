@@ -72,10 +72,9 @@ DEFAULT TABLESPACE mydb;
 -- 심지어 접속(login) 자체가 되지 않는다
 -- 
 
-
-
-
-
+CREATE TABLESPACE schoolDB
+DATAFILE 'C:/oraclexe/data/school.dbf'
+SIZE 1M AUTOEXTEND ON NEXT 1K;
 
 
 
