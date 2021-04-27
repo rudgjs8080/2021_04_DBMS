@@ -212,15 +212,31 @@ as
         on sc_num = st_num
 );
 
-select * from VIEW_성적정보;
 
-select * from view_성적정보
-order by 학번;
+SELECT * FROM view_성적정보;
+-- 학번순으로 정렬
+SELECT * FROM view_성적정보
+ORDER BY 학번;
 
-select * from view_성적정보
-order by 학과,평균 DESC;
+--- 총점을 내림차순으로 정렬
+SELECT * FROM view_성적정보
+ORDER BY 총점 DESC;
 
+-- 학과순으로 정렬하고
+-- 같은 학과가 있으면 다시 총점순으로 정렬
+SELECT * FROM view_성적정보
+ORDER BY 학과, 총점 DESC;
 
+-- 학과별로 묶고
+-- 각 학과의 총점을 계산
+-- 평균도 게산
+-- 학과칼럼을 GROUP BY로 묶지 않으면 오류가 발생
+SELECT 학과, SUM(총점) AS 학과총점, 
+        ROUND(AVG(평균),0) AS 학과평균
+FROM view_성적정보
+GROUP BY 학과
+ORDER BY 학과평균 DESC, 학과총점 DESC;
+-- ORDER BY ROUND(AVG(평균),0) DESC, SUM(총점) DESC ;
 
 
 
