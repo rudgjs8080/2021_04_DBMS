@@ -140,6 +140,7 @@ drop view view_도서대여정보;
 create view view_도서대여정보 as
 (
 select 
+    BR.br_seq as 주문번호,
     BR.br_sdate as 대여일,
     BR.br_bcode as 회원코드,
     BU.bu_name as 회원명,
