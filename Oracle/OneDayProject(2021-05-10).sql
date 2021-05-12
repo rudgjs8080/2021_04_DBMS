@@ -37,6 +37,13 @@ create SEQUENCE seq_score
 start with 1
 INCREMENT by 1;
 
+select count(*) from tbl_foods;
+
+-- 세개의 table간에 참조무결성 설정
+-- 누가 부모이고, 누가 자손인지 파악
+-- 자손 : tbl_foods,  부모 : tbl_company, tbl_items
+-- FK 설정은 자손 table에 설정하기 
+
 alter table tbl_foods
 add CONSTRAINT fk_company
 FOREIGN key(f_ccode)
@@ -51,6 +58,22 @@ alter table tbl_myfoods
 add CONSTRAINT fk_foods
 FOREIGN key(mf_fcode)
 REFERENCES tbl_foods(f_code);
+
+-- 식품정보와 제조사정보를 JOIN하여
+-- 데이터가 정상으로 임포트되었다면
+-- null 값이 나와서는 안된다
+select *
+from tbl_foods F
+    left join tbl_company C
+        on F.f_ccode = C.c_code
+    where C.c_code is null;
+
+-- 식품정보와 Item정보 JOIN 하여 null값 유무 확인
+select *
+from tbl_foods F
+    left join tbl_items I
+        on F.f_icode = I.i_code
+    where I.i_code is null;
 
 create view view_식품정보 as
 (
