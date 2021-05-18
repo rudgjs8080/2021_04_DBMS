@@ -9,7 +9,7 @@ MySQL은 사용자를 등록하는 순간 많은 권한을 갖게 된다
 * Oracle은 User 자체가 하나의 DataBase인데 MySQL은
 사용자와 DataBase는 직접적으로 연관이 없다
 * MySQL Community version에서는 별도로
-사용자를 등록하지 않고 일반적으로 Root 권한으로
+사용자를 등록하지 않고 일반적으로 Root 권한으로 
 사용한다
 
 ## root 권한 
@@ -21,3 +21,4 @@ MySQL은 사용자를 등록하는 순간 많은 권한을 갖게 된다
 * Oracle의 tableSpace와 유사한 개념으로
 일반적으로 표준 SQL을 사용하는 데이터베이스
 소프트웨어의 저장소 개념
+* Create 명령을 사용하여 data 저장소 생성
