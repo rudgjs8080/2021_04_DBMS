@@ -37,7 +37,15 @@ create user gbuser@'192.168.0.%';
 -- PC에서 접근할 때 모든 권한을 부여하겠다
 grant all privileges on *.* to
 'gbuser'@'192.168.0.%';
-
+-- 5.7 버전에서 user 비번 변경하기
+update user 
+set password = password('1234')
+where user='gbuser';
+-- MySQL 8.x 에서 비번변경하기
+alter user 'gbuser'
+identified with mysql_native_password
+by '12345';
+flush privileges;
 
 
 
