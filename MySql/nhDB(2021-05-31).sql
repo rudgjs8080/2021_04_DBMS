@@ -66,6 +66,9 @@ select * from tbl_iolist
 where io_date between '2020-04-01' and '2020-04-30'
 order by io_date;
 
+select * from tbl_iolist
+where left(io_date, 7) = '2020-04';
+
 select 	io_dname,
 		sum(if(io_inout = '1' , io_qty * io_price, 0)) 매입,
 		sum(if(io_inout = '2' , io_qty * io_price, 0)) 매출
