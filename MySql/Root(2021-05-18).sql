@@ -11,7 +11,7 @@
 create database GuestBook;
 -- gbUser 사용자를 등록하고
 -- 접근권한을 localhost로 제한하겠다
-create User gbUser@localhost;
+create User gbuser@localhost;
 -- 원격 또는 다른 서버, Client에서 접속가능하도록
 create user gbuser@'%';
 
@@ -32,14 +32,14 @@ grant all privileges on *.* to
 -- 192.168.0.*
 -- 현재 공유기에 공통으로 연결된
 -- PC에서 MySQL Server에 접근하라
-create user liuser@'192.168.0.%';
+create user gbuser@'192.168.0.%';
 -- 현재 공유기에 공통으로 연결된
 -- PC에서 접근할 때 모든 권한을 부여하겠다
 grant all privileges on *.* to
-'liuser'@'192.168.0.%';
+'gbuser'@'192.168.0.%';
 -- 5.7 버전에서 user 비번 변경하기
 update user 
-set password = password('1234')
+set password = password('12345')
 where user='gbuser';
 -- MySQL 8.x 에서 비번변경하기
 alter user 'gbuser'

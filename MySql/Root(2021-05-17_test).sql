@@ -8,7 +8,8 @@ use MYSQL;
 -- 모든 table을 보여달라
 show tables;
 -- myDB 라는 DataBase 저장소 생성
-create database myDB;
+create database accountbook;
+drop database accoutbook;
 -- 생성된 저장소 확인
 Show databases;
 -- MySQL 에서는 사용할 DB를 open하기
