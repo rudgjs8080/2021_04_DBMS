@@ -32,7 +32,7 @@ grant all privileges on *.* to
 -- 192.168.0.*
 -- 현재 공유기에 공통으로 연결된
 -- PC에서 MySQL Server에 접근하라
-create user gbuser@'192.168.0.%';
+create user gbuser;
 -- 현재 공유기에 공통으로 연결된
 -- PC에서 접근할 때 모든 권한을 부여하겠다
 grant all privileges on *.* to
