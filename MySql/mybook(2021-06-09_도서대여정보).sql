@@ -21,8 +21,10 @@ cp_genre	VARCHAR(10)
 
 create table tbl_author(
 au_code	CHAR(5)		PRIMARY KEY,
-au_name	VARCHAR(50)	NOT NULL	,
+au_name	VARCHAR(50)	NOT NULL	,	
 au_tel	VARCHAR(20)		,
 au_addr	VARCHAR(125)	,	
 au_genre	VARCHAR(30)		
 );
+
+select * from tbl_books;
