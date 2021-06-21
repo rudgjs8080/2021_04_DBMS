@@ -36,20 +36,23 @@ alter table tbl_score
 add CONSTRAINT fk_student
 FOREIGN key(sc_stnum)
 REFERENCES tbl_student(st_num);
-drop view view_list;
-create view view_list as (
+
+drop view 성적정보;
+
+create view 성적정보 as (
 select st.st_num st_num ,
 		st.st_name st_name,
         st.st_dept st_dept,
         st.st_grade st_grade,
-        count(*) subs,
-        sum(sc_score) sum,
-        round(avg(sc_score)) avg
+        count(*) st_subjects,
+        sum(sc_score) sc_score_sum,
+        round(avg(sc_score)) sc_score_avg
 from tbl_student as st
 	left join tbl_score as sc
 		on st.st_num = sc.sc_stnum
         group by st_num);
 
-select * from view_list
+select * from 성적정보
 where st_num = '20210001';
+select * from 성적정보;
 
