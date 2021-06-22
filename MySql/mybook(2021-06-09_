@@ -37,3 +37,5 @@ tel varchar(100)	not null,
 addr varchar(100)	not null
 );	
 select * from tbl_company;
+select * from tbl_books;
+desc tbl_books;
