@@ -1,5 +1,7 @@
 use mybook;
-
+drop table tbl_books;
+drop table tbl_company;
+drop table tbl_author;
 create table tbl_books(
 bk_isbn	CHAR(13)		PRIMARY KEY,
 bk_title	VARCHAR(125)	NOT NULL,	
