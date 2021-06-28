@@ -56,3 +56,6 @@ select * from 성적정보
 where st_num = '20210001';
 select * from 성적정보;
 
+select * from tbl_score
+where sc_stnum = '20210001';
+
