@@ -18,13 +18,39 @@ select * from tbl_student;
 select * from tbl_score;
 select * from tbl_subject;
 
+drop table tbl_score;
+/*
+Table에 
+	insert into on duplicate key update를
+    실행하기 위해서는 pk설정을 변경해야 한다
+tbl_score는 두개의 칼럼을 기준으로
+	insert, update를 수행하는 문제가 발생한다
+가장 좋은 설계는 update, delete를 수행할 때
+	한개의 칼럼으로 구성된 PK를 기준으로
+    수행하는 것이다
+*/
+create table tbl_score(
+-- sc_seq	bigint	auto_increment	primary key,
+sc_stnum	char(8)	NOT NULL	,
+sc_sbcode	char(4)	NOT NULL,	
+sc_score	int	NOT NULL	,
+primary key(sc_stnum, sc_sbcode)
+);
 
+/*
+pk는 그대로 살려두고
+두개의 칼럼을 묶어 unique로 설정
+두개 칼럼의 값이 동시에 같은 경우는 추가하지 말라는 제약조건 설정
+*/
 create table tbl_score(
 sc_seq	bigint	auto_increment	primary key,
 sc_stnum	char(8)	NOT NULL	,
 sc_sbcode	char(4)	NOT NULL,	
-sc_score	int	NOT NULL	
+sc_score	int	NOT NULL	,
+unique (sc_stnum, sc_sbcode)
 );
+select * from tbl_score;
+
 drop table tbl_student;
 
 
@@ -91,9 +117,24 @@ where sc_stnum = '1';
 
 select * from tbl_score;
 
+-- 한 학생의 세과목의 점수를 개별적으로 insert 하기
+insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+values('20210002','S001',90);
+insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+values('20210002','S002',90);
+insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+values('20210002','S003',90);
 
-
-
+-- 한번의 insert 명령문으로 다수의 데이터를 insert
+-- BULK insert 라고 함
+insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+values('20210003','S001',90),
+		('20210003','S002',90),
+		('20210003','S003',90),
+        ('20210003','S004',90),
+        ('20210003','S005',90);
+        
+select * from tbl_student;
 
 
 
