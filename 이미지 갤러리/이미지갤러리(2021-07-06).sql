@@ -7,7 +7,7 @@ g_date	VARCHAR(10)	not null	,
 g_time	VARCHAR(10)	not null	,
 g_subject	VARCHAR(50)	not null,	
 g_content	VARCHAR(1000)	not null	,
-g_image	VARCHAR(125)	not null	
+g_image	VARCHAR(125)		
 );
 drop table tbl_gallery;
 select * from tbl_gallery;
@@ -29,4 +29,39 @@ file_upname	VARCHAR(125)	not null
 );
 drop table tbl_files;
 show tables;
+select*from tbl_gallery;
+select * from tbl_files;
+-- EQ JOIN
+-- 카티션 곱
+-- 두개의 table을 JOIN하여
+-- table1 개수 * table 2 개수 만큼  list 출력
+select * from tbl_gallery G, tbl_files F
+	where G.g_seq = F.file_gseq
+    and G.g_seq = 1;
+
+create view view_gallery as(
+select G.g_seq as g_seq,
+		G.g_writer as g_writer,
+        G.g_date as g_date,
+        G.g_time as g_time,
+        G.g_subject as g_subject,
+        G.g_content as g_content,
+        G.g_image as g_image,
+		F.file_seq as f_seq,
+        F.file_original as f_original,
+        F.file_upname as f_upname
+from tbl_gallery G, tbl_files F
+	where G.g_seq = F.file_gseq);
+    drop view Gallery;
+    desc view_gallery;
+    
+    select * from view_gallery;
+desc tbl_gallery;
+-- insert 수령할 때
+-- auto_increment로 설정된 칼컬럼에
+-- 0 또는 null, ''등을 설정하면
+-- auto_increment가 작동된다
+insert into tbl_gallery
+(g_seq, g_writer, g_date, g_time, g_subject, g_content)
+value(0, 'key','2021','00:00','title','content');
 
