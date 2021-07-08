@@ -28,9 +28,11 @@ file_original	VARCHAR(125)	not null	,
 file_upname	VARCHAR(125)	not null	
 );
 drop table tbl_files;
+drop table tbl_member;
 show tables;
 select*from tbl_gallery;
 select * from tbl_files;
+select * from tbl_member;
 -- EQ JOIN
 -- 카티션 곱
 -- 두개의 table을 JOIN하여
