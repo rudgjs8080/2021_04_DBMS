@@ -41,6 +41,13 @@ select * from tbl_gallery G, tbl_files F
 	where G.g_seq = F.file_gseq
     and G.g_seq = 1;
 
+/*
+view_gallery의 SQL 코드
+EQ JOIN을 만들어서 보여지는 코드
+tbl_gallery에는 데이터가 있는데
+tbl_file에 
+*/
+
 create view view_gallery as(
 select G.g_seq as g_seq,
 		G.g_writer as g_writer,
@@ -57,6 +64,44 @@ from tbl_gallery G, tbl_files F
     drop view Gallery;
     desc view_gallery;
     
+    
+/*
+1:N 관계의 table일 경우
+보통은 FK로 설정하여 데이터를 유지한다
+
+1:0..N : child table에 연관된 데이터가
+		하나도 없는 경우가 있다
+        
+1:1..N : child table에 연관된 데이터가
+		최소 한 개는 있는 경우
+
+1:1..N 인 경우는 EQ JOIN을 수행해도
+		실제로 Parent tableㅔ 있는 데이터는 무조건 출력이 된다
+1:0..N 인 경우 child table에 데이터가 하나도 없는 경우
+		EQ JOIN을 수행하면
+        출력되는 데이터가 한개도 없는 상황이 발생한다
+        
+JOIN을 수행할 때는 FK가 설정되는 경우가 있거나 말거나
+	JOIN은 LEFT(OUTTER) JOIN을 수행하는 것이 좋다
+*/
+select G.g_seq as g_seq,
+		G.g_writer as g_writer,
+        G.g_date as g_date,
+        G.g_time as g_time,
+        G.g_subject as g_subject,
+        G.g_content as g_content,
+        G.g_image as g_image,
+		F.file_seq as f_seq,
+        F.file_original as f_original,
+        F.file_upname as f_upname
+from tbl_gallery G 
+	left join tbl_files F
+	on G.g_seq = F.file_gseq;
+    
+    
+    
+    
+    
     select * from view_gallery;
 desc tbl_gallery;
 -- insert 수령할 때
@@ -67,3 +112,8 @@ insert into tbl_gallery
 (g_seq, g_writer, g_date, g_time, g_subject, g_content)
 value(0, 'key','2021','00:00','title','content');
 
+select max(g_seq) from tbl_gallery;
+update tbl_gallery set g_image = null
+where g_seq = 7;
+
+select * from view_gallery;
