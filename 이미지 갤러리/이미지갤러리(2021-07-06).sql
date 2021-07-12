@@ -116,4 +116,4 @@ select max(g_seq) from tbl_gallery;
 update tbl_gallery set g_image = null
 where g_seq = 7;
 
-select * from view_gallery;
+select * from tbl_gallery;
