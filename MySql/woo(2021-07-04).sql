@@ -26,7 +26,7 @@ CREATE TABLE tbl_addr(
 select * from tbl_addr;
 
 select * from tbl_addr
-WHERE ar_addr LIKE CONCAT ('%' , '광주광역시서구양', '%');
+WHERE ar_addr LIKE CONCAT ('%' , '서남동', '%');
 
 /*
 String dong = "중흥동";
